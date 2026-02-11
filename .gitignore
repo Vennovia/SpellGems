@@ -8,6 +8,11 @@
 # folders
 build/
 vs*/
+ClibUtil/
+Data/
+lib/
+view/
+xbyak/
 
 # files
 *.zip
