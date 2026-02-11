@@ -1,11 +1,21 @@
+/*=============================================================================================================*/
+//																											   //
+//                                                  Spell Gems                                                 //
+//                                                  Keyhandler                                                 //
+//                                                                                                             //
+/*=============================================================================================================*/
+
+
 #include "keyhandler.h"
 
+// Returns the singleton key handler instance.
 KeyHandler* KeyHandler::GetSingleton()
 {
     static KeyHandler singleton;
     return &singleton;
 }
 
+// Registers the key handler as an input sink with the device manager.
 void KeyHandler::RegisterSink()
 {
     auto inputMgr = RE::BSInputDeviceManager::GetSingleton();
@@ -18,6 +28,7 @@ void KeyHandler::RegisterSink()
     }
 }
 
+// Registers a callback for a key event and returns its handle.
 [[nodiscard]] KeyHandlerEvent KeyHandler::Register(uint32_t dxScanCode, KeyEventType eventType, KeyCallback callback)
 {
     if (!callback) {
@@ -45,6 +56,7 @@ void KeyHandler::RegisterSink()
     return handle;
 }
 
+// Unregisters a previously registered key callback.
 void KeyHandler::Unregister(KeyHandlerEvent handle)
 {
     if (handle == INVALID_REGISTRATION_HANDLE) {
@@ -94,6 +106,7 @@ void KeyHandler::Unregister(KeyHandlerEvent handle)
 }
 
 
+// Dispatches input events to registered key callbacks.
 RE::BSEventNotifyControl KeyHandler::ProcessEvent(RE::InputEvent* const* a_eventList, [[maybe_unused]] RE::BSTEventSource<RE::InputEvent*>* a_eventSource)
 {
     if (!a_eventList) {

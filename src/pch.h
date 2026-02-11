@@ -1,3 +1,4 @@
+// Precompiled header for SpellGems.
 #pragma once
 
 #pragma warning(push)

@@ -8,6 +8,7 @@
 #include <atomic>
 #include <cstdint>
 
+// Key handler interface for registering key callbacks.
 using KeyCallback = std::function<void()>;
 using KeyHandlerEvent = uint64_t;
 
